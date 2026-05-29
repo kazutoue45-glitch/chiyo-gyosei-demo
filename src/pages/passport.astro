@@ -1,0 +1,162 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+const base = import.meta.env.BASE_URL;
+
+const targets = [
+  '旅行・出張が迫っているのに、平日に窓口へ行く時間がない',
+  '家族やグループで、まとめて申請したい',
+  '戸籍の取り寄せなど、面倒な準備をすべて任せたい',
+  '近くの市の窓口で、受け取れるようにしたい',
+];
+
+const points = [
+  { n: '01', t: '申請先（受取先）を選べる', d: '大阪府パスポートセンター本所・りんくうタウン分室に加え、お住まいの市の窓口（13市）からお選びいただけます。' },
+  { n: '02', t: '戸籍の取り寄せも代行', d: '面倒な戸籍謄本等の取得も、オプションで対応。当事務所の行政書士が代わりに取り寄せます（＋1,000円・税込）。' },
+  { n: '03', t: '豊富な割引サービス', d: '家族・カップル・友達でのお申し込み、シニア・学生の方には、うれしい割引をご用意しています。' },
+];
+
+const courses = [
+  { name: 'スタンダードコース', place: '大阪府パスポートセンター本所での申請', price: '6,700', note: '日曜日の受取りも可能／通常6開庁日程度（窓口の混雑状況で前後します）', pickup: true },
+  { name: 'りんくうタウン分室コース', place: 'りんくうタウン分室での申請', price: '12,820', note: '通常6開庁日程度／日曜の受取りは不可' },
+];
+
+const cities = ['堺市', '高槻市', '東大阪市', '枚方市', '富田林市', '寝屋川市', '河内長野市', '大阪狭山市', '箕面市', '豊中市', '池田市', '茨木市', '松原市'];
+
+const discounts = [
+  { name: '家族割', off: '1,000円オフ', d: 'ご家族でのお申し込み（お一人につき）' },
+  { name: 'カップル割', off: '1,000円オフ', d: 'お二人でのお申し込み（お一人につき）' },
+  { name: '友達割', off: '1,000円オフ', d: 'お友達同士でのお申し込み（お一人につき）' },
+  { name: 'シニア割・学割', off: '最大1,200円オフ', d: 'ご一緒のお申し込みで最大1,200円オフ。お一人でも500円オフ（65歳以上・学生の方）' },
+];
+
+const steps = [
+  { t: 'フォームでお申し込み', d: 'お申し込みフォームから、必要項目を入力して送信してください。' },
+  { t: '本人確認・お見積り', d: 'お申込み意思と本人確認のご連絡。代行費用と振込先をお知らせします。' },
+  { t: '書類のご郵送', d: 'お送りする申請書にご記入のうえ、必要書類と一緒に返送してください。' },
+  { t: '申請を代行', d: 'ご入金と書類の確認後、ご指定の窓口へ申請手続きを代行します。' },
+  { t: '旅券引換書をご返送', d: 'お預かりした書類とともに「旅券引換書」をお返しします。' },
+  { t: 'ご本人が窓口で受領', d: '受領可能日以降、引換書と発給手数料を持って、ご本人が窓口で受け取ります。' },
+];
+---
+
+<Base title="パスポート申請代行｜千代行政書士法務事務所（大阪）" description="大阪府のパスポート申請（新規・切替）を代行。スタンダード6,700円〜、申請先も割引も選べる、きめ細やかな代行サービス。大阪府パスポートセンターと府内13市の窓口に対応。">
+  <section class="page-hero">
+    <div class="page-hero__bg" style={`background-image:url(${base}images/passport-hero.png)`}></div>
+    <div class="page-hero__veil"></div>
+    <div class="page-hero__inner container">
+      <span class="page-hero__tag is-pp">パスポート 申請代行</span>
+      <h1 class="page-hero__title">旅の準備は、<br />荷造りと、楽しみだけに。</h1>
+      <p class="page-hero__sub">大阪府のパスポート申請（新規・切替）を代行します。申請先も割引も選べる、きめ細やかなサービスです。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="lead-block">
+        <h2>こんな方へ</h2>
+        <p>「ただただ面倒」「平日になかなか都合がつかない」。そんな方に代わって、大阪府のパスポート申請（新規・切替）を代行します。<br />（ご利用にあたっては、ご本人への本人確認・お申込み意思の確認をさせていただきます。）</p>
+      </div>
+      <ul class="worry">
+        {targets.map((w) => <li>{w}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-mist">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">3 Points</span>
+        <h2>“選べる” パスポート申請代行</h2>
+      </div>
+      <div class="reason-grid">
+        {points.map((p) => (
+          <div class="reason">
+            <span class="reason__n eng">{p.n}</span>
+            <div><h3 class="reason__t">{p.t}</h3><p class="reason__d">{p.d}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Course &amp; Price</span>
+        <h2>コースと料金</h2>
+      </div>
+      <table class="ptable">
+        <thead><tr><th>コース</th><th style="text-align:right">料金（税込・送料込）</th></tr></thead>
+        <tbody>
+          {courses.map((c) => (
+            <tr class={c.pickup ? 'is-pickup' : ''}>
+              <td class="area-cell"><strong>{c.name}</strong><br /><span class="note">{c.place}／{c.note}</span></td>
+              <td class="price-cell">{c.price}<span class="yen">円</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="ptable-note">※ パスポート受取り時には、別途、印紙・証紙（発給手数料）が必要です。<br />※ 戸籍謄本等の取得代行はオプション（＋1,000円・税込）で承ります。</p>
+
+      <div class="inline-cta">
+        <span class="inline-cta__text">どのコースが合うか分からない方は、お電話でご案内します</span>
+        <a class="inline-cta__tel" href="tel:0663536079">06-6353-6079</a>
+      </div>
+
+      <div class="panel panel--mist" style="margin-top:28px">
+        <h3>お住まいの市の窓口でも受け取れます</h3>
+        <p class="note">大阪府より権限移譲された下記13市に住民登録のある方は、各市の窓口での申請代行もお選びいただけます（料金・日数は窓口により異なります）。</p>
+        <div class="city-tags">{cities.map((c) => <span>{c}</span>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Discount</span>
+        <h2>うれしい、各種割引</h2>
+        <p class="sub">ご一緒のお申し込みや、シニア・学生の方には割引をご用意しています。</p>
+      </div>
+      <div class="discounts">
+        {discounts.map((d) => (
+          <div class="discount">
+            <span class="discount__name">{d.name}</span>
+            <div><span class="discount__off">{d.off}</span><p class="discount__d">{d.d}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Flow</span>
+        <h2>お申し込みから、受領まで</h2>
+      </div>
+      <div class="container-narrow" style="padding-inline:0">
+        <div class="flow">
+          {steps.map((s, i) => (
+            <div class="flow__item">
+              <span class="flow__num">{i + 1}</span>
+              <div class="flow__c"><h3>{s.t}</h3><p>{s.d}</p></div>
+            </div>
+          ))}
+        </div>
+        <div class="panel" style="margin-top:24px">
+          <h3>ご利用にあたって</h3>
+          <p class="note">対象は、日本国籍を有し、大阪府に住民票のある方です。パスポートの受領は、法律上ご本人のみとなります（申請窓口の変更はできません）。本人確認書類はすべて原本が必要です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta heading="旅の前の、面倒をなくしましょう" text="「自分の場合はどのコース？」「いくらになる？」そんな段階からで構いません。お気軽にご相談ください。" />
+</Base>
+
+<style>
+  .city-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .city-tags span { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.82rem; color: var(--navy); }
+</style>

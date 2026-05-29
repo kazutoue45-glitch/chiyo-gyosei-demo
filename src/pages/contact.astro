@@ -1,0 +1,92 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title="お問い合わせ｜千代行政書士法務事務所（大阪）" description="車庫証明・パスポート申請代行のお問い合わせ。お電話（06-6353-6079）または問い合わせフォームから、お気軽にご連絡ください。">
+  <section class="page-hero" style="min-height:240px">
+    <div class="page-hero__bg" style={`background-image:url(${base}images/hero-sky.png)`}></div>
+    <div class="page-hero__veil"></div>
+    <div class="page-hero__inner container">
+      <span class="page-hero__tag" style="background:var(--navy)">お問い合わせ</span>
+      <h1 class="page-hero__title">お気軽に、ご相談ください。</h1>
+      <p class="page-hero__sub">平日 10:00〜17:30 受付。いただいたご相談には、折り返しご連絡します。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <!-- 電話 -->
+      <div class="contact-tel">
+        <p class="contact-tel__label">お急ぎの方は、お電話で</p>
+        <a class="contact-tel__num tel-num" href="tel:0663536079">06-6353-6079</a>
+        <p class="contact-tel__hours">受付時間　平日 10:00〜17:30（土日祝休）</p>
+        <p class="note">「自分のケースだと、いくら？」「何を準備すればいい？」そんな段階からのご相談で構いません。</p>
+      </div>
+
+      <!-- フォーム -->
+      <div class="contact-form">
+        <p class="contact-form__label">フォームでのお問い合わせ</p>
+        <form id="cform" novalidate>
+          <label>お名前 <span class="req">必須</span>
+            <input type="text" name="name" required placeholder="例）千代 太郎" />
+          </label>
+          <div class="row">
+            <label>電話番号
+              <input type="tel" name="tel" placeholder="090-0000-0000" />
+            </label>
+            <label>メールアドレス
+              <input type="email" name="email" placeholder="you@example.com" />
+            </label>
+          </div>
+          <label>ご希望のサービス
+            <select name="service">
+              <option>車庫証明 申請代行</option>
+              <option>パスポート 申請代行</option>
+              <option>その他・まだ決まっていない</option>
+            </select>
+          </label>
+          <label>お問い合わせ内容 <span class="req">必須</span>
+            <textarea name="body" rows="6" required placeholder="ご相談内容、対象の地域などをご記入ください。"></textarea>
+          </label>
+          <button type="submit" class="btn btn-accent btn-lg" style="width:100%">この内容で送信する</button>
+        </form>
+        <div id="cform-done" class="cform-done" hidden>
+          <p class="cform-done__t">送信ありがとうございました。</p>
+          <p class="note">担当より折り返しご連絡いたします。お急ぎの場合は、お電話（06-6353-6079）でもご相談ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .contact-grid { display: grid; gap: 36px; }
+    .contact-tel { background: var(--sky-pale); border-radius: 12px; padding: 32px 28px; align-self: start; }
+    .contact-tel__label { font-size: 0.86rem; color: var(--muted); }
+    .contact-tel__num { display: block; font-size: 2.3rem; color: var(--navy); margin: 6px 0 6px; line-height: 1.1; }
+    .contact-tel__hours { font-size: 0.84rem; color: var(--muted); margin-bottom: 18px; }
+    .contact-form__label { font-family: var(--serif); font-weight: 600; color: var(--navy); font-size: 1.15rem; margin-bottom: 18px; }
+    form { display: grid; gap: 18px; }
+    label { display: grid; gap: 7px; font-size: 0.88rem; color: var(--ink); font-weight: 500; }
+    .row { display: grid; gap: 18px; }
+    input, select, textarea { font-family: inherit; font-size: 1rem; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); width: 100%; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--passport); box-shadow: 0 0 0 3px rgba(30,136,199,.14); }
+    .req { display: inline-block; font-size: 0.66rem; font-weight: 700; color: #fff; background: var(--accent); padding: 2px 7px; border-radius: 3px; vertical-align: 2px; }
+    .cform-done { background: var(--sky-pale); border-radius: 12px; padding: 32px 28px; text-align: center; }
+    .cform-done__t { font-family: var(--serif); font-size: 1.25rem; color: var(--navy); margin-bottom: 10px; }
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: start; }
+      .row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <script>
+    const form = document.getElementById('cform') as HTMLFormElement | null;
+    const done = document.getElementById('cform-done');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      form.hidden = true;
+      if (done) done.hidden = false;
+    });
+  </script>
+</Base>

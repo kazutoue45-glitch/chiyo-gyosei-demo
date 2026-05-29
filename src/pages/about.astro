@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+const base = import.meta.env.BASE_URL;
+
+const info = [
+  { t: '事務所名', d: '千代行政書士法務事務所' },
+  { t: '代表者', d: '行政書士　千代 剛三' },
+  { t: '所在地', d: '大阪市北区天神橋8-13-20-220' },
+  { t: '電話番号', d: '06-6353-6079' },
+  { t: 'メール', d: 'g-sendai@ark.ocn.ne.jp' },
+  { t: '受付時間', d: '平日 10:00〜17:30' },
+  { t: '定休日', d: '土曜・日曜・祝日' },
+  { t: '取扱業務', d: '車庫証明申請代行／パスポート申請代行／戸籍謄本等の取得代行' },
+];
+---
+
+<Base title="事務所案内｜千代行政書士法務事務所（大阪）" description="千代行政書士法務事務所（大阪市北区）のご案内。代表・千代剛三のごあいさつと事務所概要。車庫証明・パスポート申請代行の専門事務所です。">
+  <section class="page-hero">
+    <div class="page-hero__bg" style={`background-image:url(${base}images/about-hero.png)`}></div>
+    <div class="page-hero__veil"></div>
+    <div class="page-hero__inner container">
+      <span class="page-hero__tag" style="background:var(--navy)">事務所案内</span>
+      <h1 class="page-hero__title">大阪で、手続きを<br />代わってきました。</h1>
+      <p class="page-hero__sub">車庫証明とパスポート申請の代行を専門に。迅速・丁寧・真面目に、を変えずに続けています。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container rep__inner">
+      <div class="rep__photo">
+        <img src={`${base}images/daihyo.jpg`} alt="行政書士 千代 剛三" />
+      </div>
+      <div class="rep__body">
+        <span class="label eng">Message</span>
+        <h2 class="rep__head">「任せてよかった」を、当たり前に。</h2>
+        <p class="rep__text">はじめまして。千代行政書士法務事務所の千代 剛三です。<br /><br />車庫証明も、パスポートも、ご自身でやろうとすると、平日に何度も窓口へ足を運ぶことになります。仕事や家事の合間に、それは大きな負担です。<br /><br />私たちは、その面倒をまるごとお引き受けします。書類を送っていただくだけ。あとは、慣れた者が責任を持って進めます。お客様の大切な時間を、もっと意味のあることに使っていただきたい。その一心で、この仕事を続けています。</p>
+        <p class="rep__sign">行政書士　<strong>千代 剛三</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist">
+    <div class="container container-narrow" style="margin:0 auto">
+      <div class="panel">
+        <h3>行政書士だから、安心してお任せいただけます</h3>
+        <p class="note">行政書士は、官公署に提出する書類の作成・提出代理を担う国家資格者です。法律により守秘義務が課されており、お預かりした書類や個人情報を、責任を持って取り扱います。だからこそ、戸籍の取り寄せのようなデリケートな手続きも、安心してお任せいただけます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container-narrow" style="margin:0 auto">
+      <div class="sec-head" style="text-align:left">
+        <span class="label eng">Office</span>
+        <h2>事務所概要</h2>
+      </div>
+      <dl class="deflist">
+        {info.map((i) => (
+          <div><dt>{i.t}</dt><dd>{i.t === '電話番号' ? <a href="tel:0663536079" class="tel-num">{i.d}</a> : i.d}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

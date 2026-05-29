@@ -1,0 +1,209 @@
+/* =========================================================
+   千代行政書士法務事務所 デモHP — デザインシステム
+   コンセプト「空」: クリーン・誠実・開放感。情報過多の対極＝余白とリズム
+   ========================================================= */
+
+:root {
+  /* --- Color --- */
+  --navy: #16395b;        /* メイン・ディープブルー（深い空・信頼） */
+  --navy-deep: #0e2942;   /* さらに濃い紺（フッター・締め） */
+  --shako: #1b3a5b;       /* 車庫証明 識別色（道・堅実なネイビー） */
+  --passport: #1e88c7;    /* パスポート 識別色（空・旅のスカイブルー） */
+  --sky-pale: #e8f2fb;    /* 淡い空（背景アクセント） */
+  --accent: #e8862e;      /* CTA暖色（行動喚起・冷たさ回避） */
+  --accent-deep: #cf7320;
+  --ink: #1a2332;         /* 本文テキスト */
+  --muted: #5a6b7b;       /* サブテキスト */
+  --paper: #ffffff;
+  --mist: #f6f9fb;        /* オフホワイト背景 */
+  --line: #e2e8f0;        /* 薄い罫線 */
+
+  /* --- Type --- */
+  --serif: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  --sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+  --eng: "Cormorant Garamond", serif;
+
+  /* --- Layout --- */
+  --container: 1120px;
+  --gutter: 20px;
+  --header-h: 64px;
+}
+
+/* --- Reset --- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  overflow-x: clip;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.85;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+button { font-family: inherit; cursor: pointer; }
+
+/* --- Typography --- */
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.4; letter-spacing: 0.04em; word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+.eng { font-family: var(--eng); font-weight: 500; letter-spacing: 0.06em; }
+
+/* --- Layout helpers --- */
+.container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.container-narrow { width: 100%; max-width: 760px; margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: 64px; }
+.section-lg { padding-block: 80px; }
+.section-mist { background: var(--mist); }
+
+/* セクション見出し（共通リズム） */
+.sec-head { text-align: center; margin-bottom: 40px; }
+.sec-head .label {
+  display: inline-block; font-family: var(--eng); font-size: 0.82rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--accent-deep); margin-bottom: 10px; font-weight: 600;
+}
+.sec-head h2 { font-size: 1.65rem; color: var(--navy); }
+.sec-head .sub { margin-top: 12px; color: var(--muted); font-size: 0.95rem; }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  padding: 15px 28px; font-size: 1rem; font-weight: 700; letter-spacing: 0.04em;
+  border: none; border-radius: 6px; transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+  white-space: nowrap;
+}
+.btn-accent { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(232,134,46,.28); }
+.btn-accent:hover { background: var(--accent-deep); transform: translateY(-2px); }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-navy:hover { background: var(--navy-deep); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+.btn-ghost:hover { background: var(--navy); color: #fff; }
+.btn-lg { padding: 18px 38px; font-size: 1.05rem; }
+
+/* 電話番号の大きい表示 */
+.tel-num { font-family: var(--eng); font-weight: 600; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+
+/* --- 区切りの斜めクリップ（計算された逸脱・1箇所用語彙） --- */
+.clip-down { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 36px), 50% 100%, 0 calc(100% - 36px)); }
+
+/* --- 共通: サービス識別アクセントバー --- */
+.accent-bar { width: 48px; height: 4px; border-radius: 2px; background: var(--accent); }
+
+/* --- Responsive (mobile-first → PC上書き) --- */
+@media (min-width: 768px) {
+  body { font-size: 17px; }
+  .section { padding-block: 96px; }
+  .section-lg { padding-block: 132px; }
+  .sec-head h2 { font-size: 2.4rem; }
+  .sec-head { margin-bottom: 56px; }
+}
+@media (min-width: 1024px) {
+  .sec-head h2 { font-size: 2.6rem; }
+}
+
+/* =========================================================
+   下層ページ共通コンポーネント
+   ========================================================= */
+
+/* --- ページヘッダー帯 --- */
+.page-hero { position: relative; min-height: 320px; display: flex; align-items: flex-end; overflow: hidden; }
+.page-hero__bg { position: absolute; inset: 0; background-size: cover; background-position: 50% 55%; }
+.page-hero__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,33,52,.18) 0%, rgba(13,33,52,.2) 50%, rgba(13,33,52,.6) 100%); }
+.page-hero__inner { position: relative; z-index: 2; color: #fff; padding-block: 34px; }
+.page-hero__tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; padding: 5px 13px; border-radius: 4px; background: var(--shako); margin-bottom: 14px; }
+.page-hero__tag.is-pp { background: var(--passport); }
+.page-hero__title { font-size: 1.9rem; color: #fff; text-shadow: 0 2px 20px rgba(13,33,52,.5); letter-spacing: 0.04em; }
+.page-hero__sub { margin-top: 12px; font-size: 0.92rem; color: rgba(255,255,255,.92); text-shadow: 0 1px 10px rgba(13,33,52,.5); max-width: 620px; }
+
+/* --- セクション導入リード --- */
+.lead-block { max-width: 720px; margin-bottom: 36px; }
+.lead-block h2 { font-size: 1.4rem; color: var(--navy); margin-bottom: 14px; line-height: 1.5; }
+.lead-block p { color: var(--muted); font-size: 0.95rem; line-height: 1.95; }
+
+/* --- 悩みリスト --- */
+.worry { display: grid; gap: 12px; }
+.worry li { background: var(--sky-pale); border-radius: 8px; padding: 16px 18px 16px 46px; position: relative; font-size: 0.93rem; color: var(--ink); }
+.worry li::before { content: '✓'; position: absolute; left: 16px; top: 16px; color: var(--passport); font-weight: 700; }
+
+/* --- 料金テーブル --- */
+.ptable { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); font-size: 0.92rem; }
+.ptable th, .ptable td { padding: 15px 16px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.ptable thead th { background: var(--navy); color: #fff; font-weight: 600; font-size: 0.84rem; letter-spacing: 0.04em; }
+.ptable tbody tr:last-child td { border-bottom: none; }
+.ptable .area-cell { color: var(--ink); line-height: 1.7; }
+.ptable .price-cell { text-align: right; white-space: nowrap; font-family: var(--eng); font-weight: 600; font-size: 1.25rem; color: var(--navy); }
+.ptable .price-cell .yen { font-family: var(--sans); font-size: 0.82rem; font-weight: 700; }
+.ptable tbody tr.is-pickup td { background: var(--sky-pale); }
+.ptable-note { margin-top: 12px; font-size: 0.82rem; color: var(--muted); }
+
+/* --- フロー（手続きの流れ） --- */
+.flow { display: grid; gap: 0; counter-reset: step; }
+.flow__item { display: grid; grid-template-columns: 44px 1fr; gap: 18px; padding-bottom: 26px; position: relative; }
+.flow__item:not(:last-child)::before { content: ''; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--line); }
+.flow__num { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--eng); font-weight: 600; font-size: 1.1rem; z-index: 1; }
+.flow__c h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 6px; padding-top: 9px; }
+.flow__c p { font-size: 0.9rem; color: var(--muted); line-height: 1.9; }
+
+/* --- 情報パネル / 注記 --- */
+.panel { background: var(--mist); border-radius: 10px; padding: 24px 24px 24px 26px; border-left: 3px solid var(--passport); }
+.panel--mist { background: var(--sky-pale); border-left-color: var(--passport); }
+.panel h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 12px; }
+.note { font-size: 0.84rem; color: var(--muted); line-height: 1.85; }
+
+/* --- 割引グリッド --- */
+.discounts { display: grid; gap: 14px; }
+.discount { background: var(--mist); border-radius: 10px; padding: 20px 22px; display: flex; align-items: baseline; gap: 14px; }
+.discount__name { font-family: var(--serif); font-weight: 600; color: var(--navy); font-size: 1.05rem; flex-shrink: 0; min-width: 96px; }
+.discount__off { font-family: var(--eng); font-weight: 700; color: var(--accent-deep); font-size: 1.5rem; }
+.discount__d { font-size: 0.86rem; color: var(--muted); }
+
+/* --- definition list（事務所概要） --- */
+.deflist { border-top: 1px solid var(--line); }
+.deflist > div { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 16px 4px; border-bottom: 1px solid var(--line); }
+.deflist dt { color: var(--muted); font-size: 0.86rem; }
+.deflist dd { font-size: 0.95rem; word-break: keep-all; }
+
+/* --- 選ばれる理由 / ポイント（index・passport 共通） --- */
+.reason-grid { display: grid; gap: 28px; }
+.reason { display: flex; gap: 18px; align-items: flex-start; }
+.reason__n { font-size: 2rem; font-weight: 600; color: var(--accent); line-height: 1; flex-shrink: 0; }
+.reason__t { font-size: 1.12rem; color: var(--navy); margin-bottom: 8px; }
+.reason__d { font-size: 0.92rem; color: var(--muted); line-height: 1.9; }
+
+/* --- 代表挨拶（index・about 共通） --- */
+.rep__inner { display: grid; gap: 32px; }
+.rep__photo { max-width: 320px; }
+.rep__photo img { width: 100%; border-radius: 12px; box-shadow: 0 16px 38px rgba(22,57,91,.16); }
+.rep__head { font-size: 1.5rem; color: var(--navy); margin: 12px 0 18px; line-height: 1.5; }
+.rep__text { font-size: 0.95rem; color: var(--ink); line-height: 2; }
+.rep__sign { margin-top: 22px; font-family: var(--serif); font-size: 1.05rem; color: var(--navy); }
+.rep__sign strong { font-size: 1.3rem; }
+
+/* --- インラインCTA（料金表直後など、温度の高い地点） --- */
+.inline-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 22px; background: var(--sky-pale); border-radius: 10px; padding: 20px 24px; margin-top: 24px; text-align: center; }
+.inline-cta__text { font-size: 0.9rem; color: var(--navy); font-weight: 600; word-break: keep-all; }
+.inline-cta__tel { font-family: var(--eng); font-weight: 700; font-size: 1.55rem; color: var(--accent-deep); }
+
+@media (min-width: 768px) {
+  .page-hero { min-height: 380px; }
+  .page-hero__title { font-size: 2.6rem; }
+  .lead-block h2 { font-size: 1.9rem; }
+  .worry { grid-template-columns: 1fr 1fr; }
+  .discounts { grid-template-columns: 1fr 1fr; }
+  .deflist > div { grid-template-columns: 150px 1fr; }
+  .reason-grid { grid-template-columns: 1fr 1fr; gap: 36px 48px; }
+  .rep__inner { grid-template-columns: 320px 1fr; gap: 52px; align-items: center; }
+  .rep__head { font-size: 1.9rem; }
+}
+
+/* モバイル固定CTAバーの分だけ余白を確保 */
+@media (max-width: 899px) { body { padding-bottom: 70px; } }
+
+/* アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

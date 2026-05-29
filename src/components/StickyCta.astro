@@ -1,0 +1,21 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="sticky-cta">
+  <a class="sticky-cta__tel" href="tel:0663536079">
+    <span class="sticky-cta__lbl">お電話で相談</span>
+    <span class="sticky-cta__num">06-6353-6079</span>
+  </a>
+  <a class="sticky-cta__form" href={`${base}contact`}>フォームで相談</a>
+</div>
+
+<style>
+  .sticky-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: flex; box-shadow: 0 -4px 18px rgba(13,33,52,.18); }
+  .sticky-cta a { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 6px; color: #fff; line-height: 1.25; }
+  .sticky-cta__tel { background: var(--accent); }
+  .sticky-cta__lbl { font-size: 0.62rem; opacity: .92; }
+  .sticky-cta__num { font-family: var(--eng); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em; }
+  .sticky-cta__form { background: var(--navy); font-weight: 700; font-size: 0.92rem; }
+  @media (min-width: 900px) { .sticky-cta { display: none; } }
+</style>

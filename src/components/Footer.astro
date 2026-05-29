@@ -1,0 +1,51 @@
+---
+const base = import.meta.env.BASE_URL;
+const year = 2026;
+const nav = [
+  { label: 'ホーム', href: base },
+  { label: '車庫証明', href: `${base}shako` },
+  { label: 'パスポート', href: `${base}passport` },
+  { label: '事務所案内', href: `${base}about` },
+  { label: 'お問い合わせ', href: `${base}contact` },
+];
+---
+
+<footer class="ft">
+  <div class="ft__inner container">
+    <div class="ft__brand">
+      <p class="ft__name">千代行政書士法務事務所</p>
+      <p class="ft__lead">大阪市の車庫証明・パスポート申請代行。<br />2つの手続きを、ひとりの行政書士にまとめて。</p>
+    </div>
+
+    <nav class="ft__nav" aria-label="フッターナビ">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+
+    <dl class="ft__info">
+      <div><dt>所在地</dt><dd>大阪市北区天神橋8-13-20-220</dd></div>
+      <div><dt>電話</dt><dd><a href="tel:0663536079" class="tel-num">06-6353-6079</a></dd></div>
+      <div><dt>メール</dt><dd>g-sendai@ark.ocn.ne.jp</dd></div>
+      <div><dt>受付時間</dt><dd>平日 10:00〜17:30（土日祝休）</dd></div>
+      <div><dt>代表</dt><dd>行政書士 千代 剛三</dd></div>
+    </dl>
+  </div>
+  <p class="ft__copy">© {year} 千代行政書士法務事務所</p>
+</footer>
+
+<style>
+  .ft { background: var(--navy-deep); color: rgba(255,255,255,.82); padding-top: 56px; }
+  .ft__inner { display: grid; gap: 36px; }
+  .ft__name { font-family: var(--serif); font-weight: 700; font-size: 1.2rem; color: #fff; margin-bottom: 12px; letter-spacing: 0.04em; }
+  .ft__lead { font-size: 0.9rem; line-height: 1.9; }
+  .ft__nav { display: flex; flex-direction: column; gap: 12px; }
+  .ft__nav a { font-size: 0.92rem; color: rgba(255,255,255,.82); }
+  .ft__nav a:hover { color: #9fd0f0; }
+  .ft__info { display: grid; gap: 12px; font-size: 0.88rem; }
+  .ft__info div { display: grid; grid-template-columns: 72px 1fr; gap: 8px; }
+  .ft__info dt { color: rgba(255,255,255,.5); font-size: 0.78rem; padding-top: 1px; }
+  .ft__info dd a:hover { color: #9fd0f0; }
+  .ft__copy { text-align: center; font-size: 0.76rem; color: rgba(255,255,255,.5); padding: 32px 0 24px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,.1); }
+  @media (min-width: 768px) {
+    .ft__inner { grid-template-columns: 1.4fr 1fr 1.4fr; gap: 48px; }
+  }
+</style>

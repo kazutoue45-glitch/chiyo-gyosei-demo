@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+const base = import.meta.env.BASE_URL;
+
+const worries = [
+  '平日の昼間に、警察署まで2回も行く時間がない',
+  'ディーラー・販売店で、車庫証明の事務をまとめて外注したい',
+  '引っ越しや住所変更で、急いで車庫証明が必要になった',
+  '申請のしかたが、そもそもよくわからない',
+];
+
+const prices = [
+  { area: '大阪市　北区・都島区・旭区', price: '5,900', pickup: true },
+  { area: '大阪市　中央区・福島区・此花区・城東区・淀川区・西淀川区・東淀川区・鶴見区', price: '7,900' },
+  { area: '大阪市　西区・港区・大正区・天王寺区・浪速区・生野区・東成区・西成区・平野区・阿倍野区・住之江区・住吉区・東住吉区', price: '8,900' },
+  { area: '吹田市・茨木市・高槻市・豊中市・池田市・摂津市・守口市', price: '9,900' },
+];
+
+const steps = [
+  { t: 'お問い合わせ', d: 'お電話・メール・フォームから、まずはお気軽にご連絡ください。' },
+  { t: 'お打ち合わせ', d: '必要な書類と、費用のお見積りをわかりやすくご説明します。' },
+  { t: '書類のご郵送', d: 'ご用意いただいた書類を当事務所へ。北区・都島区・旭区は直接お受け取りに伺うことも可能です。' },
+  { t: '警察署へ申請', d: '書類の不備を確認したうえで、管轄の警察署へ迅速に申請します。' },
+  { t: '料金のお振込み', d: '代行費用と申請手数料を、指定の口座へお振込みください。' },
+  { t: '受取り・即日発送', d: '交付日に当事務所が受取り、その日のうちにレターパックプラスで発送します（送料は当方負担）。' },
+  { t: 'お受け取り・ご確認', d: 'お手元に届きましたらご確認いただき、これで完了です。' },
+];
+---
+
+<Base title="車庫証明 申請代行｜千代行政書士法務事務所（大阪）" description="大阪市・北摂エリアの車庫証明申請を代行。平日2回の警察署通いを、書類の郵送だけに。北区・都島区・旭区は5,900円〜、地域別の明朗料金。">
+  <section class="page-hero">
+    <div class="page-hero__bg" style={`background-image:url(${base}images/shako-hero.png)`}></div>
+    <div class="page-hero__veil"></div>
+    <div class="page-hero__inner container">
+      <span class="page-hero__tag">車庫証明 申請代行</span>
+      <h1 class="page-hero__title">平日の警察署通いは、<br />こちらが代わります。</h1>
+      <p class="page-hero__sub">普通車の車庫証明は、平日の昼間に警察署へ2回。その往復を、書類の郵送だけに置き換えます。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="lead-block">
+        <h2>こんなとき、お任せください</h2>
+        <p>大阪・北摂エリアのディーラー様・中古車販売店様から、平日にお時間の取れない個人の方まで。面倒な車庫証明の申請を、迅速・丁寧に代行しています。複数台のご依頼もまとめて承ります。</p>
+      </div>
+      <ul class="worry">
+        {worries.map((w) => <li>{w}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-mist">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Price</span>
+        <h2>地域別の代行料金</h2>
+        <p class="sub">お住まい（保管場所）の地域によって、代行料金が異なります。</p>
+      </div>
+      <table class="ptable">
+        <thead><tr><th>対応エリア</th><th style="text-align:right">代行料金（税込）</th></tr></thead>
+        <tbody>
+          {prices.map((p) => (
+            <tr class={p.pickup ? 'is-pickup' : ''}>
+              <td class="area-cell">{p.area}</td>
+              <td class="price-cell">{p.price}<span class="yen">円</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="ptable-note">※ 上記は代行料金です。証紙代などの法定費用は別途必要です。<br />※ 記載のない地域もお気軽にお問い合わせください。</p>
+      <div class="inline-cta">
+        <span class="inline-cta__text">記載のない地域・複数台のご依頼は、お電話でも承ります</span>
+        <a class="inline-cta__tel" href="tel:0663536079">06-6353-6079</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Flow</span>
+        <h2>お申し込みから、お受け取りまで</h2>
+      </div>
+      <div class="container-narrow" style="padding-inline:0">
+        <div class="flow">
+          {steps.map((s, i) => (
+            <div class="flow__item">
+              <span class="flow__num">{i + 1}</span>
+              <div class="flow__c"><h3>{s.t}</h3><p>{s.d}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta heading="その車庫証明、まとめてお任せください" text="台数が多いディーラー様も、お急ぎの個人の方も。まずは対応エリアと料金だけでも、お気軽にご確認ください。" />
+</Base>

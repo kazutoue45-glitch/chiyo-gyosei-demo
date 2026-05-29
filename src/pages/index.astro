@@ -1,0 +1,190 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+const base = import.meta.env.BASE_URL;
+
+const reasons = [
+  { n: '01', t: '行政書士だから、安心して任せられる', d: '大切な書類や個人情報を、見ず知らずの相手に預けるのは不安なもの。対応するのは、法律で守秘義務を負う国家資格者です。' },
+  { n: '02', t: '書類を送るだけで、完結する', d: '平日の昼間に動けなくても問題ありません。必要書類を郵送いただくだけ。あとはこちらで進めます。' },
+  { n: '03', t: '大阪の広いエリアに対応', d: '車庫証明は大阪市内の主要エリアと北摂、パスポートは大阪府パスポートセンターと府内13市の窓口に対応しています。' },
+  { n: '04', t: '料金は、はじめにはっきり', d: 'エリアごとの代行料金を明記。「あとから増えた」がないよう、最初にきちんとお伝えします。' },
+];
+---
+
+<Base title="千代行政書士法務事務所｜大阪の車庫証明・パスポート申請代行">
+  <!-- ===== FV ===== -->
+  <section class="fv">
+    <div class="fv__bg" style={`background-image:url(${base}images/hero-sky.png)`}></div>
+    <div class="fv__veil"></div>
+    <div class="fv__inner container">
+      <p class="fv__eyebrow eng">Chiyo Administrative Scrivener Office</p>
+      <h1 class="fv__title">車庫証明も、<br class="sp-br" />パスポートも。<br />大阪の面倒な申請、<br class="sp-br" />まとめて<em>お任せ。</em></h1>
+      <p class="fv__sub">平日の昼に、警察署まで2回。旅行前の慌ただしい窓口通い。<br />— その時間、まるごと代われます。大阪の行政書士が、2つの申請をまとめてお引き受けします。</p>
+      <div class="fv__cta">
+        <a class="btn btn-accent btn-lg" href={`${base}contact`}>無料で相談してみる</a>
+        <a class="fv__tel" href="tel:0663536079">
+          <span class="fv__tel-label">その場で相談・お電話で</span>
+          <span class="tel-num">06-6353-6079</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2本柱サービス ===== -->
+  <section class="services section">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Services</span>
+        <h2>ひとりの行政書士が、2つの「面倒」を引き受けます</h2>
+        <p class="sub">車庫証明とパスポート。どちらも、平日に時間が取れない方ほど後回しになりがちな手続きです。</p>
+      </div>
+
+      <div class="svc-grid">
+        <a class="svc svc--shako" href={`${base}shako`}>
+          <div class="svc__img"><img src={`${base}images/shako-hero.png`} alt="車庫証明申請代行" loading="lazy" /></div>
+          <div class="svc__body">
+            <p class="svc__tag">車庫証明 申請代行</p>
+            <p class="svc__lead">ディーラー様も、<br />お忙しい個人の方も。</p>
+            <p class="svc__desc">普通車は、平日昼間に警察署へ2回。その往復を、書類の郵送だけに置き換えます。</p>
+            <p class="svc__price"><span class="from">大阪市北区・都島区・旭区</span><span class="num">5,900<span class="yen">円〜</span></span></p>
+            <span class="svc__more">車庫証明の詳細を見る →</span>
+          </div>
+        </a>
+
+        <a class="svc svc--passport" href={`${base}passport`}>
+          <div class="svc__img"><img src={`${base}images/passport-hero.png`} alt="パスポート申請代行" loading="lazy" /></div>
+          <div class="svc__body">
+            <p class="svc__tag">パスポート 申請代行</p>
+            <p class="svc__lead">旅行の準備で、<br />手いっぱいの方へ。</p>
+            <p class="svc__desc">申請先も、各種割引も選べる代行。家族・カップル・学生の割引もご用意しています。</p>
+            <p class="svc__price"><span class="from">スタンダードコース</span><span class="num">6,700<span class="yen">円〜</span></span></p>
+            <span class="svc__more">パスポートの詳細を見る →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 選ばれる理由 ===== -->
+  <section class="reasons section section-mist">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Why us</span>
+        <h2>「任せてよかった」と思える理由</h2>
+      </div>
+      <div class="reason-grid">
+        {reasons.map((r) => (
+          <div class="reason">
+            <span class="reason__n eng">{r.n}</span>
+            <div>
+              <h3 class="reason__t">{r.t}</h3>
+              <p class="reason__d">{r.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 代表挨拶 ===== -->
+  <section class="rep section section-lg">
+    <div class="container rep__inner">
+      <div class="rep__photo">
+        <img src={`${base}images/daihyo.jpg`} alt="行政書士 千代 剛三" loading="lazy" />
+      </div>
+      <div class="rep__body">
+        <span class="label eng">Message</span>
+        <h2 class="rep__head">手続きは、プロに任せていい。</h2>
+        <p class="rep__text">「よくわからないまま、何度も役所に足を運んだ」。そんな声を、これまで何度も聞いてきました。<br /><br />申請の手続きは、慣れた者がやれば、ずっと早く、確実に終わります。迅速・丁寧・真面目に。それだけは、開業以来ずっと変えていません。<br /><br />あなたの時間は、もっと大事なことのために使ってください。</p>
+        <p class="rep__sign">行政書士　<strong>千代 剛三</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 対応エリア ===== -->
+  <section class="area section section-mist">
+    <div class="container">
+      <div class="sec-head">
+        <span class="label eng">Area</span>
+        <h2>大阪の、広いエリアに対応しています</h2>
+      </div>
+      <div class="area-grid">
+        <div class="area-card area-card--shako">
+          <p class="area-card__tag svc__tag">車庫証明</p>
+          <p class="area-card__main">大阪市内＋北摂エリア</p>
+          <p class="area-card__sub">北区・都島区・旭区ほか市内の主要エリア＋吹田・茨木・高槻・豊中・池田・摂津・守口市<br />（記載のない地域もお気軽にお問い合わせください）</p>
+        </div>
+        <div class="area-card area-card--pp">
+          <p class="area-card__tag svc__tag">パスポート</p>
+          <p class="area-card__main">府内の各申請窓口に対応</p>
+          <p class="area-card__sub">大阪府パスポートセンター本所・りんくうタウン分室／堺・高槻・東大阪・枚方・富田林・寝屋川・河内長野・大阪狭山・箕面・豊中・池田・茨木・松原</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
+
+<style>
+  /* ===== FV ===== */
+  .fv { position: relative; min-height: 86vh; display: flex; align-items: center; overflow: hidden; }
+  .fv__bg { position: absolute; inset: 0; background-size: cover; background-position: 50% 60%; }
+  .fv__veil { position: absolute; inset: 0;
+    background: linear-gradient(165deg, rgba(13,33,52,.5) 0%, rgba(13,33,52,.22) 38%, rgba(13,33,52,.02) 62%, rgba(13,33,52,0) 100%); }
+  .fv__inner { position: relative; z-index: 2; color: #fff; padding-block: 80px; }
+  .fv__eyebrow { font-size: 0.74rem; letter-spacing: 0.24em; color: #bfe0f5; margin-bottom: 18px; }
+  .fv__title { font-size: 1.7rem; line-height: 1.5; text-shadow: 0 2px 24px rgba(13,33,52,.5); letter-spacing: 0.04em; }
+  .fv__title em { font-style: normal; color: #ffd28a; }
+  .fv__sub { margin-top: 22px; font-size: 0.95rem; line-height: 1.95; max-width: 640px; text-shadow: 0 1px 12px rgba(13,33,52,.45); }
+  .fv__cta { margin-top: 36px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .fv__tel { display: flex; flex-direction: column; color: #fff; }
+  .fv__tel-label { font-size: 0.74rem; color: #bfe0f5; }
+  .fv__tel .tel-num { font-size: 1.95rem; line-height: 1.2; }
+  .sp-br { display: inline; }
+
+  /* ===== Services ===== */
+  .svc-grid { display: grid; gap: 24px; }
+  .svc { display: block; background: #fff; border-radius: 4px; overflow: hidden; border-top: 4px solid var(--shako);
+    transition: transform .2s ease, box-shadow .2s ease; }
+  .svc--passport { border-top-color: var(--passport); }
+  .svc:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(22,57,91,.1); }
+  .svc__img { position: relative; aspect-ratio: 16/8; overflow: hidden; }
+  .svc__img img { width: 100%; height: 100%; object-fit: cover; }
+  .svc__img::after { content: ''; position: absolute; inset: 0; }
+  .svc--shako .svc__img::after { background: linear-gradient(180deg, rgba(27,58,91,0) 55%, rgba(27,58,91,.5)); }
+  .svc--passport .svc__img::after { background: linear-gradient(180deg, rgba(30,136,199,0) 55%, rgba(30,136,199,.5)); }
+  .svc__body { padding: 26px 24px 28px; }
+  .svc__tag { display: inline-block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; color: #fff;
+    background: var(--shako); padding: 5px 12px; border-radius: 4px; margin-bottom: 14px; }
+  .svc--passport .svc__tag { background: var(--passport); }
+  .svc__lead { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--navy); line-height: 1.5; margin-bottom: 12px; }
+  .svc__desc { font-size: 0.92rem; color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
+  .svc__price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; padding-top: 16px; border-top: 1px dashed var(--line); }
+  .svc__price .from { font-size: 0.78rem; color: var(--muted); }
+  .svc__price .num { font-family: var(--eng); font-weight: 600; font-size: 2rem; color: var(--navy); line-height: 1; margin-left: auto; }
+  .svc__price .yen { font-family: var(--sans); font-size: 0.9rem; font-weight: 700; }
+  .svc__more { display: inline-block; margin-top: 18px; font-size: 0.9rem; font-weight: 700; color: var(--accent-deep); }
+
+  /* ===== Area ===== */
+  .area-grid { display: grid; gap: 20px; }
+  .area-card { border-radius: 12px; padding: 30px 28px; color: #fff; }
+  .area-card--shako { background: var(--shako); }
+  .area-card--pp { background: var(--passport); }
+  .area-card .svc__tag { background: rgba(255,255,255,.2); }
+  .area-card__main { font-family: var(--serif); font-size: 1.35rem; color: #fff; margin: 8px 0 10px; }
+  .area-card__sub { font-size: 0.86rem; color: rgba(255,255,255,.86); line-height: 1.85; }
+
+  /* ===== PC ===== */
+  @media (min-width: 768px) {
+    .fv__title { font-size: 3rem; line-height: 1.4; letter-spacing: 0.05em; }
+    .fv__sub { font-size: 1.02rem; }
+    .fv__cta { flex-direction: row; align-items: center; gap: 32px; }
+    .sp-br { display: none; }
+    .svc-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .area-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+  @media (min-width: 1024px) {
+    .fv__title { font-size: 3.6rem; }
+  }
+</style>

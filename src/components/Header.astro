@@ -1,0 +1,109 @@
+---
+const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname.replace(/\/$/, '');
+const nav = [
+  { label: 'ホーム', href: base },
+  { label: '車庫証明', href: `${base}shako` },
+  { label: 'パスポート', href: `${base}passport` },
+  { label: '事務所案内', href: `${base}about` },
+  { label: 'お問い合わせ', href: `${base}contact` },
+];
+const isActive = (href: string) => {
+  const h = href.replace(/\/$/, '');
+  return path === h;
+};
+---
+
+<header class="hdr">
+  <div class="hdr__inner">
+    <a class="brand" href={base}>
+      <span class="brand__name">千代行政書士法務事務所</span>
+      <span class="brand__sub">大阪 車庫証明・パスポート申請代行</span>
+    </a>
+
+    <nav class="gnav" id="gnav" aria-label="メインナビゲーション">
+      <ul>
+        {nav.map((n) => (
+          <li><a href={n.href} class={isActive(n.href) ? 'is-active' : ''}>{n.label}</a></li>
+        ))}
+      </ul>
+      <a class="gnav__tel" href="tel:0663536079">
+        <span class="gnav__tel-label">お電話はこちら</span>
+        <span class="tel-num">06-6353-6079</span>
+      </a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .hdr {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .hdr__inner {
+    max-width: var(--container); margin-inline: auto;
+    padding: 10px var(--gutter);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .brand { display: flex; flex-direction: column; line-height: 1.3; }
+  .brand__name { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--navy); letter-spacing: 0.04em; }
+  .brand__sub { font-size: 0.66rem; color: var(--muted); letter-spacing: 0.08em; }
+
+  .gnav { position: fixed; inset: 0; width: auto;
+    background: var(--navy); opacity: 0; visibility: hidden; transition: opacity .28s ease, visibility .28s ease;
+    display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 28px 32px;
+    z-index: 60; }
+  .gnav.open { opacity: 1; visibility: visible; }
+  .gnav ul { display: flex; flex-direction: column; gap: 4px; }
+  .gnav a { color: #fff; display: block; padding: 14px 12px; font-weight: 500; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .gnav a.is-active { color: #9fd0f0; }
+  .gnav__tel { margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start;
+    background: var(--accent); color: #fff; padding: 14px 18px; border-radius: 6px; }
+  .gnav__tel-label { font-size: 0.72rem; }
+  .gnav__tel .tel-num { font-size: 1.35rem; }
+
+  .burger { background: none; border: none; width: 40px; height: 40px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 8px; }
+  .burger span { display: block; height: 2px; background: var(--navy); border-radius: 2px; transition: .25s; }
+  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-scrim { position: fixed; inset: 0; background: rgba(14,41,66,.5); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 55; }
+  .nav-scrim.open { opacity: 1; pointer-events: auto; }
+
+  @media (min-width: 900px) {
+    .burger { display: none; }
+    .gnav { position: static; width: auto; background: none; opacity: 1; visibility: visible; flex-direction: row; align-items: center; gap: 26px; padding: 0; z-index: auto; }
+    .gnav ul { flex-direction: row; gap: 22px; }
+    .gnav a { color: var(--ink); padding: 6px 0; font-size: 0.95rem; border: none; position: relative; }
+    .gnav a:hover { color: var(--passport); }
+    .gnav a.is-active { color: var(--navy); }
+    .gnav a.is-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--accent); }
+    .gnav__tel { margin-top: 0; flex-direction: column; align-items: flex-end; background: var(--accent); color: #fff; padding: 7px 16px; border-radius: 6px; }
+    .gnav__tel:hover { background: var(--accent-deep); }
+    .gnav__tel-label { font-size: 0.6rem; color: rgba(255,255,255,.92); }
+    .gnav__tel .tel-num { font-size: 1.15rem; color: #fff; }
+  }
+</style>
+
+<script>
+  const burger = document.getElementById('burger');
+  const gnav = document.getElementById('gnav');
+  const scrim = document.createElement('div');
+  scrim.className = 'nav-scrim';
+  document.body.appendChild(scrim);
+  const toggle = (open: boolean) => {
+    gnav?.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+  };
+  burger?.addEventListener('click', () => toggle(!gnav?.classList.contains('open')));
+  scrim.addEventListener('click', () => toggle(false));
+  gnav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggle(false)));
+</script>
