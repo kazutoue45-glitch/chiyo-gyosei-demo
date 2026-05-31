@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
-<Base title="お問い合わせ｜千代行政書士法務事務所（大阪）" description="車庫証明・パスポート申請代行のお問い合わせ。お電話（06-6353-6079）または問い合わせフォームから、お気軽にご連絡ください。">
+<Base title="お問い合わせ｜あおぞら行政書士事務所（大阪）" description="車庫証明・パスポート申請代行のお問い合わせ。お電話（06-1234-5678）または問い合わせフォームから、お気軽にご連絡ください。">
   <section class="page-hero" style="min-height:240px">
     <div class="page-hero__bg" style={`background-image:url(${base}images/hero-sky.png)`}></div>
     <div class="page-hero__veil"></div>
@@ -19,7 +19,7 @@ const base = import.meta.env.BASE_URL;
       <!-- 電話 -->
       <div class="contact-tel">
         <p class="contact-tel__label">お急ぎの方は、お電話で</p>
-        <a class="contact-tel__num tel-num" href="tel:0663536079">06-6353-6079</a>
+        <a class="contact-tel__num tel-num" href="tel:0612345678">06-1234-5678</a>
         <p class="contact-tel__hours">受付時間　平日 10:00〜17:30（土日祝休）</p>
         <p class="note">「自分のケースだと、いくら？」「何を準備すればいい？」そんな段階からのご相談で構いません。</p>
       </div>
@@ -29,7 +29,7 @@ const base = import.meta.env.BASE_URL;
         <p class="contact-form__label">フォームでのお問い合わせ</p>
         <form id="cform" novalidate>
           <label>お名前 <span class="req">必須</span>
-            <input type="text" name="name" required placeholder="例）千代 太郎" />
+            <input type="text" name="name" required placeholder="例）青木 太郎" />
           </label>
           <div class="row">
             <label>電話番号
@@ -53,7 +53,7 @@ const base = import.meta.env.BASE_URL;
         </form>
         <div id="cform-done" class="cform-done" hidden>
           <p class="cform-done__t">送信ありがとうございました。</p>
-          <p class="note">担当より折り返しご連絡いたします。お急ぎの場合は、お電話（06-6353-6079）でもご相談ください。</p>
+          <p class="note">担当より折り返しご連絡いたします。お急ぎの場合は、お電話（06-1234-5678）でもご相談ください。</p>
         </div>
       </div>
     </div>
